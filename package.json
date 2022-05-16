@@ -10,17 +10,21 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "expo": "~45.0.0",
-    "expo-status-bar": "~1.3.0",
+    "axios": "^0.27.2",
+    "expo": "^43.0.1",
+    "expo-barcode-scanner": "~11.1.2",
+    "expo-camera": "~12.0.3s",
+    "expo-status-bar": "~1.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "react-native": "0.68.2",
+    "react-native": "0.64.3",
+    "react-native-paper": "^4.12.1",
     "react-native-web": "0.17.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@types/react": "~17.0.21",
-    "@types/react-native": "~0.66.13",
+    "@types/react-native": "0.64.3",
     "typescript": "~4.3.5"
   },
   "private": true
