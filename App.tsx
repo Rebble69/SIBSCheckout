@@ -81,7 +81,7 @@ export default function App() {
       return;
     }
 
-    Alert.alert("Error", "Something went wrong, please contact max y9");
+    Alert.alert("Error", "Something went wrong, please contact max y9`");
   };
 
   // What happens when we scan the bar code
