@@ -7,7 +7,7 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
-import { Camera, BarCodeScanningResult, CameraType } from "expo-camera";
+import { Camera, BarCodeScanningResult } from "expo-camera";
 import {} from "react-native-paper";
 import StudentCard from "./components/StudentCard";
 import axios from "axios";
