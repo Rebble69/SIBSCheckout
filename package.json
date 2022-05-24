@@ -15,6 +15,7 @@
     "expo-barcode-scanner": "~11.1.2",
     "expo-camera": "~12.0.3s",
     "expo-status-bar": "~1.1.0",
+    "qs": "^6.10.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-native": "0.64.3",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@types/qs": "^6.9.7",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.64.3",
     "typescript": "~4.3.5"
