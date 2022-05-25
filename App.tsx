@@ -11,11 +11,13 @@ import {
 import { Camera, BarCodeScanningResult } from "expo-camera";
 import StudentCard from "./components/StudentCard";
 import axios from "axios";
+import { ActivityIndicator } from "react-native-paper";
 
 export interface IStudent {
   name: string;
   parentName: string;
   rawUrl: string;
+  isLoading?: boolean;
 }
 
 export default function App() {
@@ -23,8 +25,6 @@ export default function App() {
   const [text, setText] = useState<string>("Not yet scanned");
   const [students, setStudents] = useState<IStudent[]>([]);
   const [paused, setPaused] = useState(false);
-
-  const [camera, setCamera] = useState<Camera | null>(null);
 
   const askForCameraPermission = () => {
     (async () => {
@@ -59,7 +59,7 @@ export default function App() {
     });
 
     delete postBody["usp"];
-    const postData = qs.stringify(postBody);
+    const postData = qs.stringify(postBody, { allowDots: true });
 
     const res = await axios({
       url: `https://docs.google.com/forms/d/e/${
@@ -95,8 +95,8 @@ export default function App() {
 
     // if barcode valid
     const newStudent: IStudent = {
-      name: data.split("/")[7].split("=")[2].split("&")[0].replace("+", " "),
-      parentName: data.split("=")[3].replace("+", " "),
+      name: data.split("/")[7].split("=")[2].split("&")[0].replaceAll("+", " "),
+      parentName: data.split("=")[3].replaceAll("+", " "),
       rawUrl: data,
     };
 
@@ -143,16 +143,23 @@ export default function App() {
         />
       </View>
       {/* <Text style={styles.maintext}>{text}</Text> */}
-      {students.map((student) => {
+      {students.map((student: IStudent) => {
         return (
-          <StudentCard
-            name={student.name}
-            parentName={student.parentName}
-            rawUrl={student.rawUrl}
-            key={student.rawUrl}
-            onCancel={handleCancel}
-            onCheckout={handleCheckout}
-          />
+          <>
+            <ActivityIndicator
+              animating={true}
+              size={"large"}
+              style={styles.loadingSpinner}
+            />
+            <StudentCard
+              name={student.name}
+              parentName={student.parentName}
+              rawUrl={student.rawUrl}
+              key={student.rawUrl}
+              onCancel={handleCancel}
+              onCheckout={handleCheckout}
+            />
+          </>
         );
       })}
     </ScrollView>
@@ -175,5 +182,9 @@ const styles = StyleSheet.create({
     width: 600,
     height: 400,
   },
+  loadingSpinner: {
+    position: "absolute",
+    top: "0%",
+    zIndex: 999,
+  },
 });
-``;
